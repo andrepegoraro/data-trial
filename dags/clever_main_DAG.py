@@ -10,7 +10,7 @@ default_args = {
 }
 
 datasets = [
-    # 'fmcsa_complaints.csv',
+    'fmcsa_complaints.csv',
     'fmcsa_safer_data.csv',
     'fmcsa_company_snapshot.csv',
     'fmcsa_companies.csv',

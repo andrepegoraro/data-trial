@@ -14,9 +14,8 @@ datasets = [
     'fmcsa_safer_data.csv',
     'fmcsa_company_snapshot.csv',
     'fmcsa_companies.csv',
-    'customer_reviews_google.csv',
-    'company_profiles_google_maps.csv'
-
+    'customer_reviews_google_filtered.csv',
+    'company_profiles_google_maps_filtered.csv'
 ]
 
 with DAG("clever_main_DAG", default_args=default_args, catchup=False, schedule_interval='20 0 * * *', max_active_runs=1) as dag:

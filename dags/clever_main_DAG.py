@@ -18,7 +18,7 @@ datasets = [
     'company_profiles_google_maps_filtered.csv'
 ]
 
-with DAG("clever_main_DAG", default_args=default_args, catchup=False, schedule_interval='20 0 * * *', max_active_runs=1) as dag:
+with DAG("clever_main_DAG", default_args=default_args, catchup=False, schedule_interval='32 15 * * *', max_active_runs=10) as dag:
 
     start_task = EmptyOperator(task_id='Start', dag=dag)
     finish_task = EmptyOperator(task_id='Finish', dag=dag)
@@ -31,7 +31,7 @@ with DAG("clever_main_DAG", default_args=default_args, catchup=False, schedule_i
             task_id=task_id,
             python_callable=upload_to_postgres,
             dag=dag,
-            execution_timeout=timedelta(minutes=5),
+            execution_timeout=timedelta(minutes=6),
             op_kwargs={
                 "file_name": file
             }

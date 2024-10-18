@@ -3,6 +3,8 @@ from airflow import DAG
 from airflow.operators.empty import EmptyOperator
 from airflow.operators.python import PythonOperator
 from scripts.clever_main_pipeline import upload_to_postgres
+from scripts.company_profiles_clean import company_profiles_clean
+from scripts.customer_reviews_clean import cleaning_customer_reviews
 
 default_args = {
     "owner": "alec.ventura",
@@ -10,15 +12,15 @@ default_args = {
 }
 
 datasets = [
-    'fmcsa_complaints.csv',
-    'fmcsa_safer_data.csv',
-    'fmcsa_company_snapshot.csv',
-    'fmcsa_companies.csv',
-    'customer_reviews_google_filtered.csv',
+    # 'fmcsa_complaints.csv',
+    # 'fmcsa_safer_data.csv',
+    # 'fmcsa_company_snapshot.csv',
+    # 'fmcsa_companies.csv',
+    # 'customer_reviews_google_filtered.csv',
     'company_profiles_google_maps_filtered.csv'
 ]
 
-with DAG("clever_main_DAG", default_args=default_args, catchup=False, schedule_interval='32 15 * * *', max_active_runs=10) as dag:
+with DAG("clever_main_DAG", default_args=default_args, catchup=False, schedule_interval='30 22 * * *', max_active_runs=1) as dag:
 
     start_task = EmptyOperator(task_id='Start', dag=dag)
     finish_task = EmptyOperator(task_id='Finish', dag=dag)
@@ -31,7 +33,7 @@ with DAG("clever_main_DAG", default_args=default_args, catchup=False, schedule_i
             task_id=task_id,
             python_callable=upload_to_postgres,
             dag=dag,
-            execution_timeout=timedelta(minutes=6),
+            execution_timeout=timedelta(minutes=5),
             op_kwargs={
                 "file_name": file
             }

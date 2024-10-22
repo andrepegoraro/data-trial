@@ -12,14 +12,12 @@ default_args = {
 }
 
 datasets = [
-    # 'fmcsa_complaints.csv',
-    # 'fmcsa_safer_data.csv',
-    # 'fmcsa_company_snapshot.csv',
-    # 'fmcsa_companies.csv',
-    # 'customer_reviews_google_filtered.csv',
-    # 'company_profiles_google_maps_filtered.csv'
+    'fmcsa_complaints.csv',
+    'fmcsa_safer_data.csv',
+    'fmcsa_company_snapshot.csv',
+    'fmcsa_companies.csv',
     'customer_reviews_escaped_filtered.csv'
-    # 'company_profiles_escaped.csv'
+    'company_profiles_escaped.csv'
 ]
 
 with DAG("clever_main_DAG", default_args=default_args, catchup=False, schedule_interval='00 02 * * *', max_active_runs=1) as dag:

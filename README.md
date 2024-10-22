@@ -31,3 +31,7 @@ Moving company data set (files can be found at 'dags/scripts/data_examples' fold
 
 ## Getting started
 To get started with Airflow check the [getting started](docs/getting_started.md) documentation.
+
+## Development
+
+All the development my Trial was documented in the [Report](notebooks/query_postgres_data.ipynb) that can be found in the notebooks.
